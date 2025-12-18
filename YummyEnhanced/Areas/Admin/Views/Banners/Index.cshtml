@@ -1,0 +1,97 @@
+﻿@model List<YummyEnhanced.ViewModels.Banner.BannerAdminVM>
+
+@{
+    ViewData["Title"] = "Manage Banner";
+}
+
+<div class="container-fluid">
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-exclamation-circle"></i> @TempData["Error"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Home Page Banner</h1>
+
+        <div>
+            <a asp-action="Trash" class="btn btn-outline-danger shadow-sm me-2">
+                <i class="fas fa-trash-alt"></i> Recycle Bin
+            </a>
+
+            @if (!Model.Any())
+            {
+                <a asp-action="Create" class="btn btn-primary shadow-sm">
+                    <i class="fas fa-plus fa-sm text-white-50"></i> Create Banner
+                </a>
+            }
+            else
+            {
+                <button class="btn btn-secondary shadow-sm" disabled title="Delete the current banner to add a new one">
+                    <i class="fas fa-ban"></i> Limit Reached
+                </button>
+            }
+        </div>
+    </div>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Active Banner</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th style="width: 200px;">Preview</th>
+                            <th>Title</th>
+                            <th>Created Date</th>
+                            <th style="width: 180px;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (!Model.Any())
+                        {
+                            <tr>
+                                <td colspan="4" class="text-center py-4 text-muted">
+                                    <i class="fas fa-image fa-3x mb-3 d-block text-gray-300"></i>
+                                    No active banner found. Click "Create Banner" to add one.
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <img src="~/uploads/banners/@item.ImageUrl"
+                                             alt="Banner"
+                                             class="img-fluid rounded shadow-sm"
+                                             style="max-height: 100px; object-fit: cover;" />
+                                    </td>
+                                    <td class="align-middle fw-bold text-gray-800">@item.Title</td>
+                                    <td class="align-middle">@item.CreatedDate</td>
+                                    <td class="align-middle text-center">
+                                        <div class="btn-group" role="group">
+                                            <a asp-action="Update" asp-route-id="@item.Id" class="btn btn-warning btn-sm text-white" title="Edit">
+                                                <i class="fas fa-edit"></i> Edit
+                                            </a>
+
+                                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm" title="Move to Trash">
+                                                <i class="fas fa-trash"></i> Delete
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

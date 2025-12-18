@@ -1,0 +1,52 @@
+﻿@model YummyEnhanced.ViewModels.Banner.BannerUpdateVM
+
+@{
+    ViewData["Title"] = "Move to Trash";
+}
+
+<div class="container-fluid">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-lg border-0 border-start border-warning border-5">
+                <div class="card-body p-5">
+
+                    <div class="text-center mb-4">
+                        <div class="rounded-circle bg-warning bg-opacity-10 d-inline-flex p-3 mb-3">
+                            <i class="fas fa-exclamation-triangle fa-3x text-warning"></i>
+                        </div>
+                        <h3 class="fw-bold text-gray-900">Move to Trash?</h3>
+                        <p class="text-muted">You are about to remove this banner from the home page.</p>
+                    </div>
+
+                    <div class="card mb-4 border bg-light">
+                        <div class="row g-0 align-items-center">
+                            <div class="col-4">
+                                <img src="~/uploads/banners/@Model.ExistingImageUrl" class="img-fluid rounded-start" alt="Banner" style="height: 80px; object-fit: cover; width: 100%;">
+                            </div>
+                            <div class="col-8">
+                                <div class="card-body py-2">
+                                    <h6 class="card-title fw-bold mb-1">@Model.Title</h6>
+                                    <small class="text-muted">This item can be restored later.</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-between">
+                        <a asp-action="Index" class="btn btn-light btn-lg px-4 border">
+                            Cancel
+                        </a>
+
+                        <form asp-action="Delete" method="post" class="flex-grow-1 ms-md-2">
+                            <input type="hidden" asp-for="Id" />
+                            <button type="submit" class="btn btn-warning btn-lg w-100 text-dark fw-bold">
+                                <i class="fas fa-trash"></i> Yes, Move to Trash
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

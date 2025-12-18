@@ -1,0 +1,53 @@
+﻿@model YummyEnhanced.ViewModels.Banner.BannerAdminVM
+
+@{
+    ViewData["Title"] = "Permanent Delete";
+}
+
+<div class="container-fluid">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-lg border-0 border-start border-danger border-5">
+                <div class="card-body p-5">
+
+                    <div class="text-center mb-4">
+                        <div class="rounded-circle bg-danger bg-opacity-10 d-inline-flex p-3 mb-3">
+                            <i class="fas fa-skull-crossbones fa-3x text-danger"></i>
+                        </div>
+                        <h2 class="fw-bold text-danger">PERMANENT DELETE</h2>
+                        <p class="text-dark fw-bold mb-1">This action cannot be undone.</p>
+                        <p class="text-muted small">The image file and data will be destroyed forever.</p>
+                    </div>
+
+                    <div class="card mb-4 border bg-light opacity-75">
+                        <div class="row g-0 align-items-center">
+                            <div class="col-4">
+                                <img src="~/uploads/banners/@Model.ImageUrl" class="img-fluid rounded-start grayscale" alt="Banner" style="height: 80px; object-fit: cover; width: 100%; filter: grayscale(100%);">
+                            </div>
+                            <div class="col-8">
+                                <div class="card-body py-2">
+                                    <h6 class="card-title fw-bold mb-1 text-muted">@Model.Title</h6>
+                                    <small class="text-danger">File will be removed from server.</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-between">
+                        <a asp-action="Trash" class="btn btn-light btn-lg px-4 border">
+                            Cancel
+                        </a>
+
+                        <form asp-action="HardDelete" method="post" class="flex-grow-1 ms-md-2">
+                            <input type="hidden" asp-for="Id" />
+                            <button type="submit" class="btn btn-danger btn-lg w-100 fw-bold">
+                                <i class="fas fa-bomb"></i> Destroy Forever
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

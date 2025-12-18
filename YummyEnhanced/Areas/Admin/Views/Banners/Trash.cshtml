@@ -1,0 +1,83 @@
+﻿@model List<YummyEnhanced.ViewModels.Banner.BannerAdminVM>
+
+@{
+    ViewData["Title"] = "Banner Recycle Bin";
+}
+
+<div class="container-fluid">
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-exclamation-triangle"></i> @TempData["Error"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3 mb-0 text-gray-800 text-danger">Deleted Banners</h1>
+        <a asp-action="Index" class="btn btn-secondary shadow-sm">
+            <i class="fas fa-arrow-left"></i> Back to Active Banners
+        </a>
+    </div>
+
+    <div class="card shadow mb-4 border-start-danger">
+        <div class="card-header py-3 bg-danger text-white">
+            <h6 class="m-0 font-weight-bold">Recycle Bin</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th style="width: 150px;">Preview</th>
+                            <th>Title</th>
+                            <th>Deleted Date</th>
+                            <th style="width: 220px;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (!Model.Any())
+                        {
+                            <tr>
+                                <td colspan="4" class="text-center py-5 text-muted">
+                                    <i class="fas fa-trash-restore fa-3x mb-3 d-block opacity-50"></i>
+                                    Trash is empty.
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            @foreach (var item in Model)
+                            {
+                                <tr class="table-secondary">
+                                    <td class="opacity-50">
+                                        <img src="~/uploads/banners/@item.ImageUrl"
+                                             class="img-thumbnail grayscale"
+                                             style="max-height: 80px;" />
+                                    </td>
+                                    <td class="align-middle text-muted text-decoration-line-through">@item.Title</td>
+                                    <td class="align-middle">@item.CreatedDate</td>
+                                    <td class="align-middle text-center">
+
+                                        <form asp-action="Restore" asp-route-id="@item.Id" method="post" class="d-inline">
+                                            @Html.AntiForgeryToken()
+                                            <button type="submit" class="btn btn-sm btn-success" title="Restore to Active">
+                                                <i class="fas fa-trash-restore"></i> Restore
+                                            </button>
+                                        </form>
+
+                                        <a asp-action="HardDelete" asp-route-id="@item.Id" class="btn btn-sm btn-danger ms-1" title="Delete Permanently">
+                                            <i class="fas fa-times"></i> Destroy
+                                        </a>
+
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

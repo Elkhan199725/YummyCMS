@@ -1,0 +1,7 @@
+﻿namespace YummyEnhanced.Services.Interfaces;
+
+public interface IFileService
+{
+    Task<string> UploadAsync(IFormFile file, string folderName);
+    void Delete(string fileName, string folderName);
+}
