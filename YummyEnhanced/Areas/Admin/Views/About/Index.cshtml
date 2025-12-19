@@ -1,0 +1,126 @@
+﻿@model AboutUpdateVM
+
+@{
+    ViewData["Title"] = "Manage About Section";
+}
+
+<div class="card shadow border-0 mt-4 mb-5">
+    <div class="card-header bg-secondary bg-gradient py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">Manage About Section</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        @* ENCTYPE is crucial for file uploads *@
+        <form method="post" enctype="multipart/form-data">
+
+            @* Hidden inputs needed for the update logic *@
+            <input asp-for="Id" type="hidden" />
+            <input asp-for="ImageUrl" type="hidden" />
+
+            @* Shows top-level errors (like database failures) *@
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
+
+            <div class="row">
+                <div class="col-md-8">
+
+                    <h4 class="text-primary pb-2 border-bottom">Main Content</h4>
+
+                    <div class="mb-3 pt-3">
+                        <label asp-for="Title" class="form-label fw-bold"></label>
+                        <input asp-for="Title" class="form-control" placeholder="e.g. About Us" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Header" class="form-label fw-bold"></label>
+                        <input asp-for="Header" class="form-control" placeholder="e.g. Learn More About Us" />
+                        <span asp-validation-for="Header" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Description" class="form-label fw-bold"></label>
+                        <textarea asp-for="Description" class="form-control" rows="6"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-4 p-3 bg-light rounded border">
+                        <label asp-for="Image" class="form-label fw-bold text-primary">Update Image</label>
+                        <input asp-for="Image" type="file" class="form-control" accept="image/*" />
+                        <div class="form-text">Leave empty to keep the current image.</div>
+                        <span asp-validation-for="Image" class="text-danger"></span>
+                    </div>
+
+                    <h4 class="text-primary pb-2 border-bottom mt-5">CEO & Contact Info</h4>
+
+                    <div class="row pt-3">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="CEOName" class="form-label fw-bold"></label>
+                            <input asp-for="CEOName" class="form-control" placeholder="CEO Name" />
+                            <span asp-validation-for="CEOName" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="CEOJob" class="form-label fw-bold"></label>
+                            <input asp-for="CEOJob" class="form-control" placeholder="Job Title" />
+                            <span asp-validation-for="CEOJob" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="PhoneNumber" class="form-label fw-bold"></label>
+                        <input asp-for="PhoneNumber" class="form-control" placeholder="+1 555 123 4567" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-6 col-md-4">
+                            <button type="submit" class="btn btn-primary form-control py-2">
+                                <i class="bi bi-check-circle-fill"></i> Update Section
+                            </button>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <a asp-area="Customer" asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary form-control py-2">
+                                <i class="bi bi-arrow-left"></i> Back to Home
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mt-4 mt-md-0">
+                    <div class="sticky-top" style="top: 20px; z-index: 1;">
+                        <label class="form-label fw-bold text-muted">Current Image Preview</label>
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-body p-2 text-center bg-light rounded">
+                                @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                                {
+                                    // FIXED: Use Bootstrap classes instead of width="100%"
+                                    <img src="~/uploads/about/@Model.ImageUrl"
+                                         class="img-fluid rounded border"
+                                         alt="Current About Image" />
+                                }
+                                else
+                                {
+                                    // Fallback if no image exists yet
+                                    <div class="py-5 text-muted border rounded bg-white">
+                                        <i class="bi bi-image fa-2x d-block mb-2"></i>
+                                        No Image Uploaded
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                        {
+                            <div class="text-center text-muted small mt-2">File: @Model.ImageUrl</div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

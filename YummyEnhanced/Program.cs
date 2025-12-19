@@ -15,6 +15,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 // 3. REGISTER YOUR CUSTOM SERVICES HERE
 builder.Services.AddScoped<IFileService, FileService>();
 builder.Services.AddScoped<IBannerService, BannerService>();
+builder.Services.AddScoped<IAboutService, AboutService>();
 
 var app = builder.Build();
 

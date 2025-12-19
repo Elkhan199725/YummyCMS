@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\Asus\\source\\repos\\Yummy\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{18AB9109-B8A8-49F4-B498-C5EB67196490}|YummyEnhanced\\YummyEnhanced.csproj|c:\\users\\asus\\source\\repos\\yummy\\yummyenhanced\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{18AB9109-B8A8-49F4-B498-C5EB67196490}|YummyEnhanced\\YummyEnhanced.csproj|solutionrelative:yummyenhanced\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{18AB9109-B8A8-49F4-B498-C5EB67196490}|YummyEnhanced\\YummyEnhanced.csproj|c:\\users\\asus\\source\\repos\\yummy\\yummyenhanced\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{18AB9109-B8A8-49F4-B498-C5EB67196490}|YummyEnhanced\\YummyEnhanced.csproj|solutionrelative:yummyenhanced\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,14 +19,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "C:\\Users\\Asus\\source\\repos\\Yummy\\YummyEnhanced\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "YummyEnhanced\\Controllers\\HomeController.cs",
-              "ToolTip": "C:\\Users\\Asus\\source\\repos\\Yummy\\YummyEnhanced\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "YummyEnhanced\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAKAAAAAAAAAA==",
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Asus\\source\\repos\\Yummy\\YummyEnhanced\\Program.cs",
+              "RelativeDocumentMoniker": "YummyEnhanced\\Program.cs",
+              "ToolTip": "C:\\Users\\Asus\\source\\repos\\Yummy\\YummyEnhanced\\Program.cs",
+              "RelativeToolTip": "YummyEnhanced\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-18T23:08:59.311Z",
+              "WhenOpened": "2025-12-19T15:53:24.682Z",
               "EditorCaption": ""
             }
           ]

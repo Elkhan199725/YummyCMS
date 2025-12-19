@@ -8,6 +8,7 @@ public sealed class AppDbContext : DbContext
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
     public DbSet<Banner> Banners { get; set; }
+    public DbSet<About> Abouts { get; set; }
 
     /// <summary>
     /// Asynchronously saves all changes made in this context to the underlying database, updating audit fields on

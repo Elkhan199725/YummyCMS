@@ -9,20 +9,8 @@ namespace YummyEnhanced.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly IBannerService _bannerService;
-    public HomeController(IBannerService bannerService)
-    {
-        _bannerService = bannerService;
-    }
     public async Task<IActionResult> Index()
     {
-        var banners = await _bannerService.GetAllUIAsync();
-
-        var model = new HomeVM
-        {
-            Banners = banners
-        };
-
-        return View(model);
+        return View();
     }
 }

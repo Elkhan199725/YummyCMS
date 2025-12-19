@@ -1,0 +1,61 @@
+﻿@model IEnumerable<BannerUIVM>
+
+<section id="hero" class="hero section light-background">
+    <div class="container">
+
+        @* Check if there are any banners in the list passed by the ViewComponent *@
+        @if (Model != null && Model.Any())
+        {
+            @* We take the first banner to display as the Main Hero *@
+            var banner = Model.First();
+
+            <div class="row gy-4 justify-content-center justify-content-lg-between">
+
+                <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center">
+
+                    <h1 data-aos="fade-up">@Html.Raw(banner.Title)</h1>
+
+                    <p data-aos="fade-up" data-aos-delay="100">
+                        @banner.Description
+                    </p>
+
+                    <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
+                        @if (!string.IsNullOrEmpty(banner.ButtonText))
+                        {
+                            <a href="@banner.ButtonLink" class="btn-get-started">@banner.ButtonText</a>
+                        }
+
+                        @if (!string.IsNullOrEmpty(banner.VideoUrl))
+                        {
+                            <a href="@banner.VideoUrl"
+                               class="glightbox btn-watch-video d-flex align-items-center"
+                               data-gallery="banner-video">
+                                <i class="bi bi-play-circle"></i><span>Watch Video</span>
+                            </a>
+                        }
+                    </div>
+                </div>
+
+                <div class="col-lg-5 order-1 order-lg-2 hero-img" data-aos="zoom-out">
+                    <img src="~/uploads/banners/@banner.ImageUrl"
+                         class="img-fluid animated"
+                         alt="@banner.Title">
+                </div>
+            </div>
+        }
+        else
+        {
+            @* Fallback if no banners exist in database *@
+            <div class="row gy-4 justify-content-center justify-content-lg-between">
+                <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center">
+                    <h1 data-aos="fade-up">Welcome to Yummy</h1>
+                    <p data-aos="fade-up" data-aos-delay="100">Delicious food is waiting for you.</p>
+                </div>
+                <div class="col-lg-5 order-1 order-lg-2 hero-img" data-aos="zoom-out">
+                    <img src="~/assets/img/hero-img.png" class="img-fluid animated" alt="">
+                </div>
+            </div>
+        }
+
+    </div>
+</section>
